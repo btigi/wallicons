@@ -1,6 +1,6 @@
 ## Introduction
 
-wallicons is console application to set the desktop walpaper, save the desktop icon locations and restore the desktop icon locations, intended to allow per wallpaper custom desktop icon layouts.
+wallicons is console application to set the desktop walpaper, save the desktop icon locations and restore the desktop icon locations, intended to allow per wallpaper custom desktop icon layouts on Windows 8 and above.
 
 ## Download
 
@@ -25,9 +25,9 @@ $ dotnet build
 
 wallicons is a command line application and should be run from a terminal session. The application has several commands:
 
-wallpaper --file [filename] --style [style]
+wallpaper --file [filename] --monitor [id]
 
-Set `file` as the desktop wallpaper in the style specified by `style`. Style defaults to Centered if not specified.
+Set `file` as the desktop wallpaper on the monitor specified by `monitor` parameter. Monitor ids are 1-indexed, matching the monitor ids in the Windows Display settings app. A monitor id of 0 is treated as 'full desktop' and spans all monitors.
 
 save
 --file [filename]

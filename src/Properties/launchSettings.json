@@ -2,7 +2,7 @@
   "profiles": {
     "wallicons": {
       "commandName": "Project",
-      "commandLineArgs": "wallpaper --file \"D:\\Documents\\images\\wp6649197.png\" --style Tiled"
+      "commandLineArgs": "wallpaper --file \"D:\\Documents\\images\\wp-colour-bubbles.jpg\""
     }
   }
 }

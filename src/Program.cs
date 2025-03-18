@@ -1,7 +1,6 @@
 ﻿using System.CommandLine;
 using System.Text.Json;
 using wallicons;
-using static wallicons.WallpaperManager;
 
 var rootCommand = new RootCommand("wallicon");
 
@@ -11,13 +10,13 @@ var fileOption = new Option<string>(
     {
         IsRequired = true
     };
-var styleOption = new Option<Style>(
-    name: "--style",
-    description: "The style to use.",
-    getDefaultValue: () => Style.Centered);
-var wallpaperCommand = new Command("wallpaper", "Set the desktop wallpaper") { fileOption, styleOption };
+var monitorOption = new Option<int>(
+    name: "--monitor",
+    description: "The monitor to set the wallpaper on.",
+    getDefaultValue: () => 0);
+var wallpaperCommand = new Command("wallpaper", "Set the desktop wallpaper") { fileOption, monitorOption };
 rootCommand.AddCommand(wallpaperCommand);
-wallpaperCommand.SetHandler(SetWallpaper, fileOption, styleOption);
+wallpaperCommand.SetHandler(SetWallpaper, fileOption, monitorOption);
 
 var saveOption = new Option<string>(
     name: "--file",
@@ -42,13 +41,13 @@ restoreCommand.SetHandler(RestoreIconPositions, restoreOption);
 return rootCommand.InvokeAsync(args).Result;
 
 
-static void SetWallpaper(string wallpaper, Style style)
+static void SetWallpaper(string wallpaper, int monitor)
 {
-    Console.WriteLine($"Setting wallpaper to {wallpaper} with style {style}");
+    Console.WriteLine($"Setting wallpaper to {wallpaper} on monitor {monitor}");
     if (!String.IsNullOrEmpty(wallpaper))
     {
         var wallpaperManager = new WallpaperManager();
-        wallpaperManager.SetWallpaper(wallpaper, style);
+        wallpaperManager.SetWallpaper(wallpaper, monitor);
     }
 }
 
